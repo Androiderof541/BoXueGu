@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(psw_agian)){
                     Toast.makeText(RegisterActivity.this,"请再次输入密码",Toast.LENGTH_SHORT).show();
                     return;
-                }else if(!et_psw.equals(psw_agian)){
+                }else if(!psw.equals(psw_agian)){
                     Toast.makeText(RegisterActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
                     return;
                 }else if(isExistUserName(userName)){
@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void getEditString() {
         userName =et_user_name.getText().toString().trim();
-        psw =et_psw.getText().toString();
+        psw =et_psw.getText().toString().trim();
         psw_agian = et_psw_agian.getText().toString().trim();
 
     }
