@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_courses;
     private TextView tv_exercises;
     private TextView tv_myinfo;
-    private LinearLayout mBodyLayout;
+    private FrameLayout mBodyLayout;
     private ImageView iv_courses;
     private ImageView iv_exercises;
     private ImageView iv_myinfo;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initBodyLayout() {
-        mBodyLayout = (LinearLayout) findViewById(R.id.main_body);
+        mBodyLayout = (FrameLayout) findViewById(R.id.main_body);
     }
 
     @Override
@@ -134,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void removeAllView(){
-        for (int i=0;i<mBottomLayout.getChildCount();i++){
-            mBottomLayout.getChildAt(i).setVisibility(View.GONE);
+        for (int i=0;i<mBodyLayout.getChildCount();i++){
+            mBodyLayout.getChildAt(i).setVisibility(View.GONE);
         }
 
     }
