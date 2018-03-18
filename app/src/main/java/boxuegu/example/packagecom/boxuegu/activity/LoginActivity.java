@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                }else if (TextUtils.isEmpty(psw)){
                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
                }else if (md5psw.equals(spPsw)){
-                   Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();//登录失败
                    saveLoginStatus(true,userName);
                    Intent data =new Intent();
                    data.putExtra("isLogin",true);

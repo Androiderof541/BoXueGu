@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setListener() {
         for(int i=0;i<mBottomLayout.getChildCount();i++){
-            mBottomLayout.setOnClickListener(this);
+            mBottomLayout.getChildAt(i).setOnClickListener(this);
         }
     }
 
@@ -113,22 +113,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 0:
                 mCoursesBtn.setSelected(true);
                 iv_courses.setImageResource(R.drawable.main_course_icon_selected);
-                tv_courses.setTextColor(Color.parseColor("#0097f7"));
+                tv_courses.setTextColor(Color.parseColor("#0097F7"));
                 rl_title_bar.setVisibility(View.VISIBLE);
                 tv_main_title.setText("博学谷课程");
                 break;
             case 1:
                 mExercisesBtn.setSelected(true);
                 iv_exercises.setImageResource(R.drawable.main_exercises_icon_selected);
-                tv_exercises.setTextColor(Color.parseColor("#0097f7"));
+                tv_exercises.setTextColor(Color.parseColor("#0097F7"));
                 rl_title_bar.setVisibility(View.VISIBLE);
                 tv_main_title.setText("博学谷习题");
                 break;
             case 2:
                 mMyinfoBtn.setSelected(true);
                 iv_myinfo.setImageResource(R.drawable.main_my_icon_selected);
-                tv_myinfo.setTextColor(Color.parseColor("#0097f7"));
-                rl_title_bar.setVisibility(View.VISIBLE);
+                tv_myinfo.setTextColor(Color.parseColor("#0097F7"));
+                rl_title_bar.setVisibility(View.GONE);
                 break;
         }
     }
@@ -159,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         iv_courses.setImageResource(R.drawable.main_course_icon);
         iv_exercises.setImageResource(R.drawable.main_exercises_icon);
         iv_myinfo.setImageResource(R.drawable.main_my_icon);
+        for (int i=0;i<mBottomLayout.getChildCount();i++){
+            mBottomLayout.getChildAt(i).setSelected(false);
+        }
     }
 protected long exitTime;
     @Override
