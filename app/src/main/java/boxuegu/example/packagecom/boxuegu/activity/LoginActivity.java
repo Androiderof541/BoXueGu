@@ -1,5 +1,6 @@
 package boxuegu.example.packagecom.boxuegu.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -79,17 +80,20 @@ public class LoginActivity extends AppCompatActivity {
                }else if (TextUtils.isEmpty(psw)){
                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
                }else if (md5psw.equals(spPsw)){
-                   Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();//登录失败
+                   Toast.makeText(LoginActivity.this,"登录成功"+userName,Toast.LENGTH_SHORT).show();//登录失败
                    saveLoginStatus(true,userName);
                    Intent data =new Intent();
                    data.putExtra("isLogin",true);
                    setResult(RESULT_OK,data);
-                   LoginActivity.this.finish();
+                   //LoginActivity.this.finish();
+                   Intent intent =new Intent(LoginActivity.this,MainActivity.class);
+                   startActivityForResult(intent,3);
 
                }else if (!TextUtils.isEmpty(spPsw) && !md5psw.equals(spPsw)){
                    Toast.makeText(LoginActivity.this,"输入用户名和密码不一致",Toast.LENGTH_SHORT).show();
                }else{
                    Toast.makeText(LoginActivity.this,"此用户不存在",Toast.LENGTH_SHORT).show();
+
                }
 
            }
@@ -118,5 +122,10 @@ public class LoginActivity extends AppCompatActivity {
                 et_user_name.setText(userName);
                 et_user_name.setSelection(userName.length());
             }
+    }
+    private String getUserName(){
+        SharedPreferences sp=getSharedPreferences("loginUserName", Context.MODE_PRIVATE);
+        String username =sp.getString("loginUserName",null);
+        return username;
     }
 }

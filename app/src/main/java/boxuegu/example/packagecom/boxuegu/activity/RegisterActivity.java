@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                     saveRegisterInfo(userName,psw);
                     Intent data=new Intent();
-                    data.putExtra("userName",userName);//发送用户名和密码？
+                    data.putExtra("userName",userName);
                     setResult(RESULT_OK,data);
                     RegisterActivity.this.finish();
 
@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
         String md5Psw= MD5utils.md5(psw);
         SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
-        editor.putString(userName,psw);
+        editor.putString(userName,md5Psw);
         editor.commit();
 
 

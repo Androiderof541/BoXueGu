@@ -2,6 +2,7 @@ package boxuegu.example.packagecom.boxuegu.activity;
 
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import boxuegu.example.packagecom.boxuegu.R;
 
@@ -79,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         initBodyLayout();
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, LoginActivity .class);
+                startActivity(intent);
+                MainActivity.this.finish();
+            }
+        };
+        timer.schedule(task,3000);
     }
 
     private void initBodyLayout() {
@@ -198,4 +213,7 @@ protected long exitTime;
         boolean isLogin=sp.getBoolean("isLogin",false);
         return isLogin;
     }
+
+
+
 }
