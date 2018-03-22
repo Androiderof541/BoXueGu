@@ -20,8 +20,24 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import boxuegu.example.packagecom.boxuegu.R;
+import boxuegu.example.packagecom.boxuegu.view.MyInfoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null){
+            boolean isLogin=data.getBooleanExtra("isLogin",false);
+            if (isLogin) {
+                clearBottomImageState();
+                selectDisplayView(0);
+            }
+            if (myInfoView!=null){
+                myInfoView.setLoginParams(isLogin);
+            }
+
+        }
+    }
 
     private TextView tv_back;
     private TextView tv_main_title;
@@ -84,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         initBodyLayout();
 
-        Timer timer = new Timer();
+        /*Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -93,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 MainActivity.this.finish();
             }
         };
-        timer.schedule(task,3000);
+        timer.schedule(task,3000);*/
     }
 
     private void initBodyLayout() {
@@ -155,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    private MyInfoView myInfoView;
 
     private void createView(int viewindex) {
         switch (viewindex){
@@ -163,6 +180,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 1:
                 break;
             case 2:
+                if (myInfoView==null){
+                    myInfoView=new MyInfoView(this);
+                    mBodyLayout.addView(myInfoView.getView());
+                }else{
+                    myInfoView.getView();
+                }
+                myInfoView.showView();
                 break;
         }
     }
@@ -214,6 +238,8 @@ protected long exitTime;
         return isLogin;
     }
 
+   public void showView(){
 
+   }
 
 }

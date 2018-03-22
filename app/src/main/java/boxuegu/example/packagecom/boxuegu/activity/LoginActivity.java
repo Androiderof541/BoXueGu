@@ -85,9 +85,10 @@ public class LoginActivity extends AppCompatActivity {
                    Intent data =new Intent();
                    data.putExtra("isLogin",true);
                    setResult(RESULT_OK,data);
-                   //LoginActivity.this.finish();
-                   Intent intent =new Intent(LoginActivity.this,MainActivity.class);
-                   startActivityForResult(intent,3);
+                   LoginActivity.this.finish();
+                   //Intent intent =new Intent(LoginActivity.this,MainActivity.class);
+                   //startActivityForResult(intent,3);
+                   return;
 
                }else if (!TextUtils.isEmpty(spPsw) && !md5psw.equals(spPsw)){
                    Toast.makeText(LoginActivity.this,"输入用户名和密码不一致",Toast.LENGTH_SHORT).show();
