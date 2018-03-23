@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:id="@+id/setting_activity"
+    tools:context="boxuegu.example.packagecom.boxuegu.activity.SettingActivity">
+
+    <include layout="@layout/main_title_bar"></include>
+    <view
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#E3E3E3"/>
+    <RelativeLayout
+        android:id="@+id/rl_motify_psw"
+        android:background="#F7F8F8"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="修改密码"
+            android:textColor="#A3A3A3"
+            android:layout_marginLeft="25dp"
+            android:textSize="16dp"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/iv_right_arrow"
+            android:layout_marginRight="25dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_security_setting"
+        android:background="#F7F8F8"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="设置密保"
+            android:textColor="#A3A3A3"
+            android:layout_marginLeft="25dp"
+            android:textSize="16dp"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/iv_right_arrow"
+            android:layout_marginRight="25dp"/>
+    </RelativeLayout>
+
+    <view
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="15dp"
+    android:background="#E3E3E3"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_exit_login"
+        android:background="#F7F8F8"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="退出登录"
+            android:textColor="#A3A3A3"
+            android:layout_marginLeft="25dp"
+            android:textSize="16dp"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/iv_right_arrow"
+            android:layout_marginRight="25dp"/>
+    </RelativeLayout>
+
+</LinearLayout>
