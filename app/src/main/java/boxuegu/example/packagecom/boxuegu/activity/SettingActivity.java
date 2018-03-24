@@ -1,7 +1,8 @@
 package boxuegu.example.packagecom.boxuegu.activity;
 
-import android.content.Intent;
+import  android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,13 +19,14 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
     }
 
     private void init() {
         TextView tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         TextView tv_back = (TextView) findViewById(R.id.tv_back);
-        tv_back.setText("设置");
+        tv_main_title.setText("设置");
         RelativeLayout rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
 

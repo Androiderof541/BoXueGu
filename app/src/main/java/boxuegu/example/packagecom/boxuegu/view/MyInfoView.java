@@ -92,8 +92,7 @@ public class MyInfoView {
             public void onClick(View v){
                 if (readLoginStatus()){
                     Intent intent=new Intent(mContext, SettingActivity.class);
-                    ((Activity)mContext).startActivityForResult(intent,1);
-
+                    ((Activity) mContext).startActivityForResult(intent,1);
                 }else{
                     Toast.makeText(mContext,"你还没登录，请先登录",Toast.LENGTH_SHORT).show();
                 }
