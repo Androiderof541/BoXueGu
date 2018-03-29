@@ -14,6 +14,13 @@ import android.widget.Toast;
 import boxuegu.example.packagecom.boxuegu.R;
 
 public class SettingActivity extends AppCompatActivity {
+public static SettingActivity instance =null;
+    private TextView tv_main_title;
+    private TextView tv_back;
+    private RelativeLayout title_bar;
+    private RelativeLayout rl_motify_psw;
+    private RelativeLayout rl_exit_login;
+    private RelativeLayout rl_security_setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +28,19 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
+        instance=this;
     }
 
     private void init() {
-        TextView tv_main_title = (TextView) findViewById(R.id.tv_main_title);
-        TextView tv_back = (TextView) findViewById(R.id.tv_back);
+        tv_main_title = (TextView) findViewById(R.id.tv_main_title);
+        tv_back = (TextView) findViewById(R.id.tv_back);
         tv_main_title.setText("设置");
-        RelativeLayout rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
-        rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
+        title_bar = (RelativeLayout) findViewById(R.id.title_bar);
+        title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
 
-        RelativeLayout rl_motify_psw = (RelativeLayout) findViewById(R.id.rl_motify_psw);
-        RelativeLayout rl_exit_login = (RelativeLayout) findViewById(R.id.rl_exit_login);
-        RelativeLayout rl_security_setting = (RelativeLayout) findViewById(R.id.rl_security_setting);
+        rl_motify_psw = (RelativeLayout) findViewById(R.id.rl_motify_psw);
+        rl_exit_login = (RelativeLayout) findViewById(R.id.rl_exit_login);
+        rl_security_setting = (RelativeLayout) findViewById(R.id.rl_security_setting);
 
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +53,8 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(SettingActivity.this,ModifyPswActivity.class);
-                startActivityForResult(intent,3);
-                //startActivity(intent);
+                //startActivityForResult(intent,3);
+                startActivity(intent);
 
             }
         });

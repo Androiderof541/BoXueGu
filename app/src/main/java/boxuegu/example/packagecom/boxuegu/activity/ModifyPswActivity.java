@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,7 +85,7 @@ public class ModifyPswActivity extends AppCompatActivity{
                     modifyPsw(newPsw);
                     Intent intent=new Intent(ModifyPswActivity.this,LoginActivity.class);
                     startActivity(intent);
-                    //SettingActivity.instance.finish();
+                    SettingActivity.instance.finish();
                     ModifyPswActivity.this.finish();
                 }
             }
@@ -102,15 +101,15 @@ public class ModifyPswActivity extends AppCompatActivity{
 
     private void modifyPsw(String newPsw) {
         String md5psw= MD5utils.md5(newPsw);
-        SharedPreferences sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
         editor.putString(userName,md5psw);
         editor.commit();
     }
 
     private String readPsw() {
-        SharedPreferences sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
-        String spPsw=sharedPreferences.getString(userName,"");
+        SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
+        String spPsw=sp.getString(userName,"");
         return spPsw;
     }
 }
