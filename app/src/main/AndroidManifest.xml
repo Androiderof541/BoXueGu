@@ -28,6 +28,10 @@
         </activity>
         <activity android:name=".activity.FindpswActivity">
         </activity>
+        <activity android:name=".activity.FindPswActivity">
+        </activity>
+        <activity android:name=".activity.ModifyPswActivity">
+        </activity>
     </application>
 
 </manifest>
