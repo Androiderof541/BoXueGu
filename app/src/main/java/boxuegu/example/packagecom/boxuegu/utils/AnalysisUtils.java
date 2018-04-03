@@ -13,4 +13,16 @@ public class AnalysisUtils {
         String userName=sp.getString("loginUserName","");
         return userName;
     }
+    public static boolean readLoginStatus(Context context){
+        SharedPreferences sp= context.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
+        boolean islogin=sp.getBoolean("isLogin",false);
+        return islogin;
+    }
+    public static void clearLoginStatus(Context context){
+        SharedPreferences sp=context.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putBoolean("isLogin",false);
+        editor.putString("loginUserName","");
+        editor.commit();
+    }
 }

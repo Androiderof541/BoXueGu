@@ -20,10 +20,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import boxuegu.example.packagecom.boxuegu.R;
+import boxuegu.example.packagecom.boxuegu.frament.FragmentCourseFragment;
+import boxuegu.example.packagecom.boxuegu.frament.FragmentExercisesFragment;
+import boxuegu.example.packagecom.boxuegu.frament.FragmentMyinfoFragment;
+import boxuegu.example.packagecom.boxuegu.utils.AnalysisUtils;
 import boxuegu.example.packagecom.boxuegu.view.MyInfoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(data!=null){
@@ -37,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         }
-    }
+    }*/
+
+
 
     private TextView tv_back;
     private TextView tv_main_title;
@@ -62,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initBottomBar();
         setListener();
         setInitStatus();
+        setMain();
+    }
+    private void setMain() {
+        this.getSupportFragmentManager().beginTransaction().add(R.id.main_body, new FragmentCourseFragment()).commit();
+        setSelectedStatus(0);
     }
 
     private void setInitStatus() {
@@ -120,16 +131,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bottom_bar_courses_btn:
-                clearBottomImageState();
-                selectDisplayView(0);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_body,new FragmentCourseFragment()).commit();
+                setSelectedStatus(0);
+                /*clearBottomImageState();
+                selectDisplayView(0);*/
                 break;
             case R.id.bottom_bar_exercises_btn:
-                clearBottomImageState();
-                selectDisplayView(1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_body,new FragmentExercisesFragment()).commit();
+                setSelectedStatus(1);
+                /*clearBottomImageState();
+                selectDisplayView(1);*/
                 break;
             case R.id.bottom_bar_myinfo_btn:
-                clearBottomImageState();
-                selectDisplayView(2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_body,new FragmentMyinfoFragment()).commit();
+                setSelectedStatus(2);
+                /*clearBottomImageState();
+                selectDisplayView(2);*/
                 break;
         }
     }
@@ -146,6 +163,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mCoursesBtn.setSelected(true);
                 iv_courses.setImageResource(R.drawable.main_course_icon_selected);
                 tv_courses.setTextColor(Color.parseColor("#0097F7"));
+
+                iv_myinfo.setImageResource(R.drawable.main_my_icon);
+                tv_myinfo.setTextColor(Color.parseColor("#666666"));
+
+                iv_exercises.setImageResource(R.drawable.main_exercises_icon);
+                tv_exercises.setTextColor(Color.parseColor("#666666"));
+
                 rl_title_bar.setVisibility(View.VISIBLE);
                 tv_main_title.setText("博学谷课程");
                 break;
@@ -153,6 +177,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mExercisesBtn.setSelected(true);
                 iv_exercises.setImageResource(R.drawable.main_exercises_icon_selected);
                 tv_exercises.setTextColor(Color.parseColor("#0097F7"));
+
+                iv_courses.setImageResource(R.drawable.main_course_icon);
+                tv_courses.setTextColor(Color.parseColor("#666666"));
+
+                iv_myinfo.setImageResource(R.drawable.main_my_icon);
+                tv_myinfo.setTextColor(Color.parseColor("#666666"));
                 rl_title_bar.setVisibility(View.VISIBLE);
                 tv_main_title.setText("博学谷习题");
                 break;
@@ -160,6 +190,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mMyinfoBtn.setSelected(true);
                 iv_myinfo.setImageResource(R.drawable.main_my_icon_selected);
                 tv_myinfo.setTextColor(Color.parseColor("#0097F7"));
+
+                iv_courses.setImageResource(R.drawable.main_course_icon);
+                tv_courses.setTextColor(Color.parseColor("#666666"));
+
+                iv_exercises.setImageResource(R.drawable.main_exercises_icon);
+                tv_exercises.setTextColor(Color.parseColor("#666666"));
                 rl_title_bar.setVisibility(View.GONE);
                 break;
         }
@@ -211,10 +247,14 @@ protected long exitTime;
                 Toast.makeText(this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             }else{
-                MainActivity.this.finish();
+                /*MainActivity.this.finish();
                 if(readLoginStatus()){
                     clearLoginStatus();
 
+                }*/
+                this.finish();
+                if (AnalysisUtils.readLoginStatus(this)){
+                    AnalysisUtils.clearLoginStatus(this);
                 }
                 System.exit(0);
             }
@@ -238,8 +278,17 @@ protected long exitTime;
         return isLogin;
     }
 
-   public void showView(){
-
-   }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null){
+            boolean isLogin=data.getBooleanExtra("isLogin",false);
+            if (isLogin){
+                setSelectedStatus(2);
+            }else{
+                setSelectedStatus(2);
+            }
+        }
+    }
 
 }

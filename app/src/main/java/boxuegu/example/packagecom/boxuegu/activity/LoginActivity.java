@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
            @Override
            public void onClick(View v) {
                Intent intent=new Intent(LoginActivity.this,FindPswActivity.class);
-               startActivity(intent);
+               startActivityForResult(intent,1);
            }
        });
 
@@ -87,8 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                    data.putExtra("isLogin",true);
                    setResult(RESULT_OK,data);
                    LoginActivity.this.finish();
-                   //Intent intent =new Intent(LoginActivity.this,MainActivity.class);
-                   //startActivityForResult(intent,3);
                    return;
 
                }else if (!TextUtils.isEmpty(spPsw) && !md5psw.equals(spPsw)){

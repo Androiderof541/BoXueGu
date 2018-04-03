@@ -46,7 +46,7 @@ public class ModifyPswActivity extends AppCompatActivity{
         title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         et_original_psw = (EditText) findViewById(R.id.et_original_psw);
         et_new_psw = (EditText) findViewById(R.id.et_new_psw);
-        et_new_psw_again = (EditText) findViewById(R.id.et_pws_agian);
+        et_new_psw_again = (EditText) findViewById(R.id.et_new_psw_again);
         btn_save = (Button) findViewById(R.id.btn_save);
 
 
