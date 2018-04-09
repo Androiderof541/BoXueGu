@@ -284,9 +284,11 @@ protected long exitTime;
         if (data!=null){
             boolean isLogin=data.getBooleanExtra("isLogin",false);
             if (isLogin){
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_body,new FragmentMyinfoFragment()).commit();
                 setSelectedStatus(2);
             }else{
                 setSelectedStatus(2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_body,new FragmentMyinfoFragment()).commit();
             }
         }
     }

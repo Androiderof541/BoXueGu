@@ -19,6 +19,15 @@ import boxuegu.example.packagecom.boxuegu.utils.MD5utils;
 public class FindPswActivity extends AppCompatActivity {
 
     private String from;
+    private TextView tv_repsw;
+    private EditText et_validate_reset_name;
+    private TextView tv_main_title;
+    private EditText et_validate_name;
+    private TextView tv_back;
+    private Button btn_validate;
+    private TextView tv_reset_psw;
+    private EditText et_user_name;
+    private TextView tv_user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +40,18 @@ public class FindPswActivity extends AppCompatActivity {
     }
 
     private void init() {
-        TextView tv_main_title = (TextView) findViewById(R.id.tv_main_title);
-        final EditText et_validate_name = (EditText) findViewById(R.id.et_validate_name);
-        TextView tv_back = (TextView) findViewById(R.id.tv_back);
-        Button btn_validate = (Button) findViewById(R.id.btn_validate);
-        final TextView tv_reset_psw = (TextView) findViewById(R.id.tv_reset_psw);
-        final EditText et_user_name = (EditText) findViewById(R.id.et_user_name);
-        TextView tv_user_name = (TextView) findViewById(R.id.tv_user_name);
+        tv_main_title = (TextView) findViewById(R.id.tv_main_title);
+        et_validate_name = (EditText) findViewById(R.id.et_validate_name);
+        tv_back = (TextView) findViewById(R.id.tv_back);
+        btn_validate = (Button) findViewById(R.id.btn_validate);
+        //tv_reset_psw = (TextView) findViewById(R.id.tv_reset_psw);
+        et_user_name = (EditText) findViewById(R.id.et_user_name);
+        tv_user_name = (TextView) findViewById(R.id.tv_user_name);
+        tv_repsw = (TextView) findViewById(R.id.tv_repsw);
+        et_validate_reset_name = (EditText) findViewById(R.id.et_validate_reset_name);
         if ("security".equals(from)){
             tv_main_title.setText("设置密保");
+            btn_validate.setText("设置");
         }else{
             tv_main_title.setText("找回密码");
             tv_user_name.setVisibility(View.VISIBLE);
@@ -54,7 +66,7 @@ public class FindPswActivity extends AppCompatActivity {
         btn_validate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String validateName=et_validate_name.getText().toString().trim();
+                String validateName= et_validate_name.getText().toString().trim();
                 if ("security".equals(from)){
                     if (TextUtils.isEmpty(validateName)){
                         Toast.makeText(FindPswActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
@@ -65,7 +77,7 @@ public class FindPswActivity extends AppCompatActivity {
                         FindPswActivity.this.finish();
                     }
                 }else{
-                    String userName=et_user_name.getText().toString().trim();
+                    String userName= et_user_name.getText().toString().trim();
                     String sp_security=readSecurity(userName);
                     if (TextUtils.isEmpty(userName)){
                         Toast.makeText(FindPswActivity.this, "请输入您的用户名", Toast.LENGTH_SHORT).show();
@@ -80,17 +92,27 @@ public class FindPswActivity extends AppCompatActivity {
                         Toast.makeText(FindPswActivity.this, "输入的密保不正确", Toast.LENGTH_SHORT).show();
                         return;
                     }else{
-                        tv_reset_psw.setVisibility(View.VISIBLE);
+                        /*tv_reset_psw.setVisibility(View.VISIBLE);
                         tv_reset_psw.setText("初始密码：123456");
-                        savePsw(userName);
+                        savePsw(userName);*/
+                        tv_repsw.setVisibility(View.VISIBLE);
+                        et_validate_reset_name.setVisibility(View.VISIBLE);
+                        btn_validate.setText("确认修改");
+                        String nPsw=et_validate_reset_name.getText().toString().trim();
+                        if (!TextUtils.isEmpty(nPsw)){
+                            savePsw(userName,nPsw);
+                            FindPswActivity.this.finish();
+
+                        }
+
                     }
                 }
             }
         });
     }
 
-    private void savePsw(String userName){
-        String md5Psw= MD5utils.md5("123456");
+    private void savePsw(String userName,String newPsw){
+        String md5Psw= MD5utils.md5(newPsw);
         SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
         editor.putString(userName,md5Psw);
