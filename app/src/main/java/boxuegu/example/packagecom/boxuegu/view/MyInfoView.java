@@ -15,8 +15,10 @@ import android.widget.Toast;
 import java.util.zip.Inflater;
 
 import boxuegu.example.packagecom.boxuegu.R;
+
 import boxuegu.example.packagecom.boxuegu.activity.LoginActivity;
 import boxuegu.example.packagecom.boxuegu.activity.SettingActivity;
+import boxuegu.example.packagecom.boxuegu.activity.UserInfoActivity;
 import boxuegu.example.packagecom.boxuegu.utils.AnalysisUtils;
 
 /**
@@ -64,10 +66,15 @@ public class MyInfoView {
         rl_setting = (RelativeLayout) mCurrentView.findViewById(R.id.rl_setting);
         tv_user_name = (TextView) mCurrentView.findViewById(R.id.tv_user_name);
 
+
+
         ll_head.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 if (readLoginStatus()){
+                    Intent intent =new Intent(mContext, UserInfoActivity.class);
+                    //mContext.startActivity(intent);
+                    ((Activity) mContext).startActivityForResult(intent,1);
 
                 }else{
                     Intent intent =new Intent(mContext, LoginActivity.class);
