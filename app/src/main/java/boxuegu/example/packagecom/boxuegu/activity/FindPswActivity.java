@@ -1,6 +1,7 @@
 package boxuegu.example.packagecom.boxuegu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -60,7 +61,13 @@ public class FindPswActivity extends AppCompatActivity {
         tv_back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                String userName=et_user_name.getText().toString().trim();
+                if (!TextUtils.isEmpty(userName)){
+                Intent data =new Intent();
+                data.putExtra("isLogin",true);
+                setResult(RESULT_OK,data);
                 FindPswActivity.this.finish();
+                }
             }
         });
         btn_validate.setOnClickListener(new View.OnClickListener(){
@@ -101,6 +108,9 @@ public class FindPswActivity extends AppCompatActivity {
                         String nPsw=et_validate_reset_name.getText().toString().trim();
                         if (!TextUtils.isEmpty(nPsw)){
                             savePsw(userName,nPsw);
+                            Intent data =new Intent();
+                            data.putExtra("isLogin",true);
+                            setResult(RESULT_OK,data);
                             FindPswActivity.this.finish();
 
                         }

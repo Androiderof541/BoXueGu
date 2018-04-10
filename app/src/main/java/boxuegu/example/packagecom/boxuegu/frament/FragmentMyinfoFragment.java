@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import boxuegu.example.packagecom.boxuegu.R;
+import boxuegu.example.packagecom.boxuegu.activity.FindPswActivity;
 import boxuegu.example.packagecom.boxuegu.activity.LoginActivity;
 import boxuegu.example.packagecom.boxuegu.activity.SettingActivity;
+import boxuegu.example.packagecom.boxuegu.activity.UserInfoActivity;
 import boxuegu.example.packagecom.boxuegu.utils.AnalysisUtils;
 
 
@@ -66,6 +68,8 @@ public class FragmentMyinfoFragment extends Fragment implements View.OnClickList
         switch (v.getId()){
             case R.id.ll_head:
                 if (AnalysisUtils.readLoginStatus(getActivity())){
+                    Intent intent=new Intent(getActivity(),UserInfoActivity.class);
+                    getActivity().startActivityForResult(intent,1);
 
                 }else{
                     Intent intent=new Intent(getActivity(), LoginActivity.class);
