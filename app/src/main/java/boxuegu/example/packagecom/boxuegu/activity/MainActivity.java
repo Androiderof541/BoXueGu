@@ -23,6 +23,7 @@ import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.frament.FragmentCourseFragment;
 import boxuegu.example.packagecom.boxuegu.frament.FragmentExercisesFragment;
 import boxuegu.example.packagecom.boxuegu.frament.FragmentMyinfoFragment;
+import boxuegu.example.packagecom.boxuegu.frament.MainViewExerciseFragment;
 import boxuegu.example.packagecom.boxuegu.utils.AnalysisUtils;
 import boxuegu.example.packagecom.boxuegu.view.MyInfoView;
 

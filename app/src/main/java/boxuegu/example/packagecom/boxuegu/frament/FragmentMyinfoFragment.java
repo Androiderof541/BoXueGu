@@ -19,6 +19,7 @@ import boxuegu.example.packagecom.boxuegu.activity.LoginActivity;
 import boxuegu.example.packagecom.boxuegu.activity.SettingActivity;
 import boxuegu.example.packagecom.boxuegu.activity.UserInfoActivity;
 import boxuegu.example.packagecom.boxuegu.utils.AnalysisUtils;
+import boxuegu.example.packagecom.boxuegu.view.ExercisesView;
 
 
 public class FragmentMyinfoFragment extends Fragment implements View.OnClickListener{
@@ -31,6 +32,7 @@ public class FragmentMyinfoFragment extends Fragment implements View.OnClickList
     private ImageView bottom_courses_icon;
     private RelativeLayout rl_setting;
     private ImageView iv_userinfo_icon;
+    private ExercisesView mExercisesView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +61,9 @@ public class FragmentMyinfoFragment extends Fragment implements View.OnClickList
             tv_user_name.setText(AnalysisUtils.readLoginUserName(getActivity()));
         }else{
             tv_user_name.setText("点击登录");
+
         }
+
 
     }
 

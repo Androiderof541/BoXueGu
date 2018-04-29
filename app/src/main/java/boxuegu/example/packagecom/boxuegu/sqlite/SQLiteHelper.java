@@ -23,6 +23,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         +"_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
         "userName VARCHAR,"
         +"nickName VARCHAR,"
+        +"qq VARCHAR,"
         +"sex VARCHAR,"
         +"sigature VARCHAR"+
         ")");

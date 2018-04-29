@@ -31,6 +31,7 @@ public class DBUtils {
     public void saveUserInfo(UserBean bean){
         ContentValues cv=new ContentValues();
         cv.put("userName",bean.userName);
+        cv.put("qq",bean.qq);
         cv.put("nickName",bean.nickName);
         cv.put("sex",bean.nickName);
         cv.put("signature",bean.signature);
@@ -47,6 +48,7 @@ public class DBUtils {
             bean.nickName=cursor.getString(cursor.getColumnIndex("nickName"));
             bean.signature=cursor.getString(cursor.getColumnIndex("signature"));
             bean.sex=cursor.getString(cursor.getColumnIndex("sex"));
+            bean.qq=cursor.getString(cursor.getColumnIndex("qq"));
 
         }
         cursor.close();

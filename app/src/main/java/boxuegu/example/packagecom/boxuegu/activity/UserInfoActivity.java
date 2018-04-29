@@ -35,7 +35,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_main_title;
     private RelativeLayout title_bar;
     private static final int CHANG_NICKNAME=1;
-    private  static final int CHANG_SIGNATURE=2;
+    private static final int CHANG_SIGNATURE=2;
+    private static final int CHANG_QQ=3;
+    private TextView tv_qq;
+    private RelativeLayout rl_qq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_back = (TextView) findViewById(R.id.tv_back);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         title_bar = (RelativeLayout) findViewById(R.id.title_bar);
+
+        rl_qq = (RelativeLayout) findViewById(R.id.rl_qq);
+        tv_qq = (TextView) findViewById(R.id.tv_qq);
+
         tv_main_title.setText("个人资料 ");
         title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
 
@@ -70,6 +77,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rlNickName.setOnClickListener(this);
         rlSex.setOnClickListener(this);
         rlSignature.setOnClickListener(this);
+        rl_qq.setOnClickListener(this);
     }
 
     private void initData() {
@@ -81,6 +89,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             bean.nickName="问答精灵";
             bean.sex="男";
             bean.signature="问答精灵";
+            bean.qq="未添加";
             DBUtils.getInstance(this).saveUserInfo(bean);
         }
         setValue(bean);
@@ -91,6 +100,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tvUserName.setText(bean.userName);
         tvSex.setText(bean.sex);
         tvSignature.setText(bean.signature);
+        tv_qq.setText(bean.qq);
     }
 
     @Override
@@ -108,14 +118,24 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 enterActivityForResult(ChangeUserInfoActivity.class,CHANG_NICKNAME,bdName);
                 break;
             case R.id.rl_sex:
+                String sex=tvSex.getText().toString();
+                sexDialog(sex);
                 break;
             case R.id.rl_signature:
-                String signature=tvNickname.getText().toString();
-                Bundle bdsignature=new Bundle();
-                bdsignature.putString("content",signature);
-                bdsignature.putString("title","签名");
-                bdsignature.putInt("flag",2);
-                enterActivityForResult(ChangeUserInfoActivity.class,CHANG_NICKNAME,bdsignature);
+                String signature=tvSignature.getText().toString();
+                Bundle bsignature=new Bundle();
+                bsignature.putString("content",signature);
+                bsignature.putString("title","签名");
+                bsignature.putInt("flag",2);
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANG_SIGNATURE,bsignature);
+                break;
+            case R.id.rl_qq:
+                String qq=tv_qq.getText().toString();
+                Bundle bdqq=new Bundle();
+                bdqq.putString("content",qq);
+                bdqq.putString("title","QQ");
+                bdqq.putInt("flag",3);
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANG_QQ,bdqq);
                 break;
             default:
                 break;
@@ -172,9 +192,18 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     if (TextUtils.isEmpty(new_info)){
                         return;
                     }
-
                     tvSignature.setText(new_info);
                     DBUtils.getInstance(UserInfoActivity.this).updataUserInfo("signature",new_info,spUserName);
+                }
+                break;
+            case CHANG_QQ:
+                if (data!=null){
+                    String new_info=data.getStringExtra("qq");
+                    if (TextUtils.isEmpty(new_info)){
+                        return;
+                    }
+                    tv_qq.setText(new_info);
+                    DBUtils.getInstance(UserInfoActivity.this).updataUserInfo("qq",new_info,spUserName);
                 }
                 break;
         }

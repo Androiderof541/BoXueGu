@@ -1,10 +1,8 @@
-package boxuegu.example.packagecom.boxuegu.frament;
+package boxuegu.example.packagecom.boxuegu.view;
 
-import android.support.v4.app.Fragment;
-import android.view.View;
+import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -13,31 +11,37 @@ import java.util.List;
 import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.adapter.ExercisesAdapter;
 import boxuegu.example.packagecom.boxuegu.bean.ExercisesBean;
+import boxuegu.example.packagecom.boxuegu.frament.FragmentMyinfoFragment;
 
+/**
+ * Created by pc on 2018/4/21.
+ */
 
-public class FragmentExercisesFragment extends Fragment  {
-    private ListView lvList;
-    private List<ExercisesBean> ebl;
+public class ExercisesView {
+    private Activity mContext;
+    private LayoutInflater mInflater;
+    private ListView lv_list;
     private ExercisesAdapter adapter;
+    private List<ExercisesBean> ebl;
+    private View mCurrentView;
 
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_view_exercise, null);
+    /*public ExercisesView(Activity context) {
+        mContext=context;
+        mInflater=LayoutInflater.from(mContext);
+    }
+    private void createView(){
+        initView();
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        lvList = (ListView) view.findViewById(R.id.lv_list);
-        adapter=new ExercisesAdapter(getActivity());
+    private void initView() {
+        mInflater.inflate(R.layout.main_view_exercise,null);
+        lv_list=(ListView) mCurrentView.findViewById(R.id.lv_list);
+        adapter=new ExercisesAdapter(mContext);
         initData();
         adapter.setData(ebl);
-        lvList.setAdapter(adapter);
-
+        lv_list.setAdapter(adapter);
     }
+
     private void initData() {
         ebl=new ArrayList<ExercisesBean>();
         for (int i=0;i<10;i++){
@@ -94,11 +98,22 @@ public class FragmentExercisesFragment extends Fragment  {
                     bean.content="共计5题";
                     bean.background=(R.drawable.exercises_bg_2);
                     break;
-                default:
-                    break;
+                    default:
+                        break;
             }
             ebl.add(bean);
         }
     }
-
+    public  View getView(){
+        if (mCurrentView==null){
+            createView();
+        }
+        return mCurrentView;
+    }
+    public void showView(){
+        if (mCurrentView==null){
+            createView();
+        }
+        mCurrentView.setVisibility(View.VISIBLE);
+    }*/
 }

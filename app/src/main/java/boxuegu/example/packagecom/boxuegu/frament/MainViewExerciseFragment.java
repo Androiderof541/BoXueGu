@@ -14,13 +14,11 @@ import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.adapter.ExercisesAdapter;
 import boxuegu.example.packagecom.boxuegu.bean.ExercisesBean;
 
+public class MainViewExerciseFragment extends Fragment  {
 
-public class FragmentExercisesFragment extends Fragment  {
     private ListView lvList;
     private List<ExercisesBean> ebl;
     private ExercisesAdapter adapter;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +34,6 @@ public class FragmentExercisesFragment extends Fragment  {
         initData();
         adapter.setData(ebl);
         lvList.setAdapter(adapter);
-
     }
     private void initData() {
         ebl=new ArrayList<ExercisesBean>();
