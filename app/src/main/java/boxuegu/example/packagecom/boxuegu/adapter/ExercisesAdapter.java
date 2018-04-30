@@ -69,8 +69,9 @@ public class ExercisesAdapter extends BaseAdapter {
                 vh.content.setText("已经完成");
             } else {
                 vh.content.setText(bean.content);
-                vh.order.setBackgroundResource(bean.background);
             }
+                vh.order.setBackgroundResource(bean.background);
+
         }
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,7 +79,7 @@ public class ExercisesAdapter extends BaseAdapter {
                     if (bean == null) {
                         return;
                     }
-                    Intent intent = new Intent(mContext, ExercisesDetailActivity.class);
+                    Intent intent = new Intent(mContext,ExercisesDetailActivity.class);
                     intent.putExtra("id", bean.id);
                     intent.putExtra("title", bean.title);
                     ((Activity) mContext).startActivityForResult(intent, 000);
