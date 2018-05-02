@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import boxuegu.example.packagecom.boxuegu.bean.CourseBean;
 import boxuegu.example.packagecom.boxuegu.bean.ExercisesBean;
 
 /**
@@ -87,7 +88,7 @@ public class AnalysisUtils {
         iv_c.setEnabled(value);
         iv_d.setEnabled(value);
     }
-    /*public static List<CourseBean> getCourseInfos(InputStream is) throws Exception{
+    public static List<CourseBean> getCourseInfos(InputStream is) throws Exception{
         XmlPullParser parser=Xml.newPullParser();
         parser.setInput(is,"utf-8");
         List<CourseBean> courseList=null;
@@ -123,5 +124,5 @@ public class AnalysisUtils {
             type=parser.next();
         }
         return courseList;
-    }*/
+    }
 }
