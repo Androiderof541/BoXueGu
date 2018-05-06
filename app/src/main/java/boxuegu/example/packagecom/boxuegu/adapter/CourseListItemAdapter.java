@@ -15,11 +15,9 @@ import java.util.List;
 import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.bean.CourseBean;
 
-/**
- * Created by pc on 2018/5/2.
- */
 
 public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAdapter.ViewHolder>{
+
     private List<CourseBean> objects = new ArrayList<CourseBean>();
 
     private Context context;
