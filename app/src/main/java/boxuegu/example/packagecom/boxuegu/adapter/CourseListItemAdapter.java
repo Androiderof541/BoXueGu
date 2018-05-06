@@ -1,22 +1,24 @@
 package boxuegu.example.packagecom.boxuegu.adapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.bean.CourseBean;
 
+import static java.security.AccessController.getContext;
 
-public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAdapter.ViewHolder>{
+public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAdapter.ViewHolder> {
 
     private List<CourseBean> objects = new ArrayList<CourseBean>();
 
@@ -28,10 +30,19 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
         this.layoutInflater = LayoutInflater.from(context);
     }
 
+    /*@Override
+    public int getCount() {
+        return objects.size();
+    }*/
+
+    /*@Override
+    public CourseBean getItem(int position) {
+        return objects.get(position);
+    }*/
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(context);
+        LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view=inflater.inflate(R.layout.course_list_item,parent,false);
         return new ViewHolder(view);
     }
@@ -39,10 +50,9 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         initializeViews(objects.get(position),holder);
+
     }
-    public void setData(List<CourseBean> objects){
-        this.objects=objects;
-    }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -53,7 +63,20 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
         return objects.size();
     }
 
-    private void initializeViews(final CourseBean object, ViewHolder holder) {
+   /*@Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.course_list_item, null);
+            convertView.setTag(new ViewHolder(convertView));
+        }
+        initializeViews((CourseBean)getItem(position), (ViewHolder) convertView.getTag());
+        return convertView;
+    }*/
+    public void setData(List<CourseBean> objects){
+        this.objects=objects;
+    }
+
+    private void initializeViews(CourseBean object, ViewHolder holder) {
         //TODO implement
         if (object!=null){
             holder.tvCourseImgTitle.setText(object.imgTitle);
@@ -93,7 +116,7 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
             holder.ivCourseImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*Intent intent=new Intent(context, ActivityVideoListActivity.class);
+                   /* Intent intent=new Intent(context, ActivityVideoListActivity.class);
                     intent.putExtra("id",object.id);
                     intent.putExtra("intro",object.intro);
                     context.startActivity(intent);*/
@@ -101,10 +124,11 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
             });
         }
     }
+
     protected class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView ivCourseImg;
-        private TextView tvCourseImgTitle;
-        private TextView tvCourseTitle;
+    private TextView tvCourseImgTitle;
+    private TextView tvCourseTitle;
 
         public ViewHolder(View view) {
             super(view);

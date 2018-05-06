@@ -8,6 +8,6 @@ public class VideoBean {
     public int charterId;
     public int videoId;
     public String title;
-    public String secondId;
+    public String secondTitle;
     public String videoPath;
 }
