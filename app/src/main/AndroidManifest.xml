@@ -32,6 +32,10 @@
         </activity>
         <activity android:name=".activity.ChangeUserInfoActivity">
         </activity>
+        <activity android:name=".activity.ExercisesDetailActivity"></activity>
+        <activity android:name=".activity.ActivityVideoListActivity"></activity>
+        <activity android:name=".activity.ActivityVideoPlayActivity"></activity>
+        <activity android:name=".activity.ActivityPlayHistoryActivity"></activity>
     </application>
-
+ <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import boxuegu.example.packagecom.boxuegu.R;
+import boxuegu.example.packagecom.boxuegu.activity.ActivityPlayHistoryActivity;
 import boxuegu.example.packagecom.boxuegu.activity.FindPswActivity;
 import boxuegu.example.packagecom.boxuegu.activity.LoginActivity;
 import boxuegu.example.packagecom.boxuegu.activity.SettingActivity;
@@ -82,7 +83,8 @@ public class FragmentMyinfoFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.rl_courses_history:
                 if (AnalysisUtils.readLoginStatus(getActivity())){
-
+                    Intent intent=new Intent(getActivity(), ActivityPlayHistoryActivity.class);
+                    getActivity().startActivity(intent);
             }else{
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
             }

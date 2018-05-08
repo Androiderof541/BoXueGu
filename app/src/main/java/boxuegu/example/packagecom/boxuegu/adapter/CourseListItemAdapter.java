@@ -9,14 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import boxuegu.example.packagecom.boxuegu.activity.ActivityVideoListActivity;
 import boxuegu.example.packagecom.boxuegu.R;
 import boxuegu.example.packagecom.boxuegu.bean.CourseBean;
-
-import static java.security.AccessController.getContext;
 
 public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAdapter.ViewHolder> {
 
@@ -76,7 +74,7 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
         this.objects=objects;
     }
 
-    private void initializeViews(CourseBean object, ViewHolder holder) {
+    private void initializeViews(final CourseBean object, ViewHolder holder) {
         //TODO implement
         if (object!=null){
             holder.tvCourseImgTitle.setText(object.imgTitle);
@@ -116,10 +114,10 @@ public class CourseListItemAdapter extends RecyclerView.Adapter<CourseListItemAd
             holder.ivCourseImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   /* Intent intent=new Intent(context, ActivityVideoListActivity.class);
+                   Intent intent=new Intent(context, ActivityVideoListActivity.class);
                     intent.putExtra("id",object.id);
                     intent.putExtra("intro",object.intro);
-                    context.startActivity(intent);*/
+                    context.startActivity(intent);
                 }
             });
         }

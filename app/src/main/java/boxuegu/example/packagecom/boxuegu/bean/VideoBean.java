@@ -5,7 +5,7 @@ package boxuegu.example.packagecom.boxuegu.bean;
  */
 
 public class VideoBean {
-    public int charterId;
+    public int chapterId;
     public int videoId;
     public String title;
     public String secondTitle;
